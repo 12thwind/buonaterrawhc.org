@@ -53,7 +53,7 @@
 								<div class="inner">
 									<h2 id="text13" class="text-component instance-13 style-2">Connect with us</h2>
 									<p id="text10" class="text-component instance-10 style-3"><span class="p">Curious if this approach might be a good fit?<br />Reach out to start a conversation.</span></p>
-									<form id="form03" method="POST" action="https://formsubmit.co/apgriffis@icloud.com" class="form-component instance-3 style-1">
+									<form id="form03" method="POST" action="https://formsubmit.co/2784144bea4ae0fc18304b39f400517f" class="form-component instance-3 style-1">
 										<div class="inner">
 											<div class="field">
 											<label for="form03-fname">Name</label>			<input type="text" name="name" id="form03-fname" placeholder="" maxlength="128" required />
@@ -67,6 +67,8 @@
 										</div>
 										<input type="hidden" name="_subject" value="New inquiry from buonaterrawhc.org" />
 										<input type="hidden" name="_template" value="table" />
+										<input type="hidden" name="_next" value="https://buonaterrawhc.org/?sent=1" />
+										<input type="hidden" name="_autoresponse" value="Thanks — Kirsten will be in touch shortly." />
 										<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 									</form>
 									<ul id="icons02" class="icons-component instance-2 style-1">
@@ -96,5 +98,19 @@
 			</div>
 		</div>
 		<script src="assets/main.js"></script>
+		<script>
+			if (new URLSearchParams(location.search).has('sent')) {
+				var f = document.getElementById('form03');
+				if (f) {
+					var msg = document.createElement('p');
+					msg.className = 'text-component instance-10 style-3';
+					var span = document.createElement('span');
+					span.className = 'p';
+					span.textContent = 'Thanks — Kirsten will be in touch shortly.';
+					msg.appendChild(span);
+					f.replaceWith(msg);
+				}
+			}
+		</script>
 	</body>
 </html>
