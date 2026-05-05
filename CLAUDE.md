@@ -23,6 +23,7 @@ A single-page static marketing site for **Buona Terra Women's Health Coaching** 
 
 ## Things to know before changing anything
 
-- The contact form posts to `action="#"` — it does not actually submit anywhere. If the user wants form submissions to work, this needs a backend (Formspree, Netlify Forms, etc.) and is a real change, not a tweak.
+- The contact form posts to FormSubmit (`https://formsubmit.co/<hash>`) — the hash maps to `buonaterrawhc@gmail.com`. Do not replace the hash with the plaintext address; it's there to keep Kirsten's inbox out of scraped HTML. Hidden fields control behavior: `_subject`, `_template=table`, `_next=https://buonaterrawhc.org/?sent=1`, `_autoresponse`, and a `_honey` honeypot. CAPTCHA is left at FormSubmit's default (on) — only disable with `_captcha=false` if spam stays low. After redirect, an inline script at the end of `<body>` swaps the form for a thank-you message and scrolls it into view when `?sent=1` is present.
+- **If the FormSubmit endpoint ever needs re-issuing** (e.g. Kirsten changes inbox, hash is rotated): submit the live form once with the new email in `action=`, click the activation link FormSubmit sends, then replace `action=` with the new hash from that email. A re-export from Carrd will wipe these form changes — re-apply from git history.
 - Social/contact links in `index.html`: Instagram `@buonaterrawhc`, Facebook profile id `61587481711205`, email `buonaterrawhc@gmail.com`. Update all three together if the client rebrands.
 - `<body class="is-loading">` — the `is-loading` class is removed by `main.js` on load. Don't strip it; the CSS depends on it for the fade-in.
